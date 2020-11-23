@@ -35,7 +35,14 @@
     </nav>
   </header>
   <div id="content">
-    <section id="main_section">section</section>
+    <section id="main_section">
+      <%
+        study.User user = (study.User)session.getAttribute("user");
+        out.println("user_id : " + user.getUser_id() + "<br/>");
+        out.println("usr_email : " + user.getUsr_email()  + "<br/>");
+        out.println("usr_phone_number : " + user.getUsr_phone_number()  + "<br/>");
+      %>
+    </section>
     <aside id="main_aside">aside</aside>
   </div>
   <footer id="main_footer">
