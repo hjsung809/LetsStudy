@@ -1,10 +1,13 @@
+drop tables user_meeting, user_recruitment, user_study_group, meetings, recruitments, study_groups, users;
+
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     usr_email VARCHAR(255) NOT NULL,
     usr_password VARCHAR(255) NOT NULL,
     usr_phone_number VARCHAR(255) NOT NULL,
     usr_description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (usr_email)
 )  ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS study_groups (

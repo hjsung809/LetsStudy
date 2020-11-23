@@ -115,6 +115,8 @@ rem ---------------------------------------------------------------------------
 
 setlocal
 
+chcp 65001
+
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
 if "%TEMP%" == "" goto mainEntry

@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
+<% 
+  study.User user = (study.User)session.getAttribute("user");
+  if (user == null) {
+    // session.setAttribute("user_id",5);
+    pageContext.forward("signin.jsp");
+  } else {
+    pageContext.forward("main.jsp");
+   }
+%>
+<%-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +45,13 @@
     </nav>
   </header>
   <div id="content">
-    <section id="main_section">section</section>
+    <section id="main_section">
+
+    </section>
     <aside id="main_aside">aside</aside>
   </div>
   <footer id="main_footer">
     <h3>Let's study</h3>
   </footer>
 </body>
-</html>
+</html> --%>

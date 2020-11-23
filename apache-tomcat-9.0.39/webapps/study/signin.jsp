@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<jsp:useBean scope="application" id="passport" class="study.Passport" />
+
+<%
+  if(request.getMethod().equals("POST")) {
+      study.User user = passport.signIn(request.getParameter("email"), request.getParameter("password"));
+
+      if (user != null) {
+        session.setAttribute("user", user);
+        pageContext.forward("main.jsp");
+      } else {
+        out.println("<script>alert('로그인에 실패하였습니다.')</script>");
+      }
+  }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +24,14 @@
   <link rel="stylesheet" type="text/css" href="init.css">
   
   <style>
+    #content > #main_section {
+      width: 960px;
+      float: none;
+      margin: 0 auto;
+      height: 100%;
+      background-color: antiquewhite;
+    }
+
     #signin_form {
       width: 360px;
       margin: 0 auto;
@@ -62,20 +85,19 @@
   <div id="content">
 
     <section id="main_section">
-      <form id="signin_form" action="">
+      <form id="signin_form" method=post action="signin.jsp">
         <div>
 
         </div>
         <div>
-          <label for="email">E-Mail</label>
+          <label for="email">E-Mail</label> 
           <input type="email" name="email">
           <label for="password">Password</label>
           <input type="password" name="password">
           <button type="submit">로그인</button>
         </div>
-        아직 가입하지 않으셨다면? <a href="">회원 가입하기</a>
+        아직 가입하지 않으셨다면? <a href="signup.jsp">회원 가입하기</a>
       </form>
-
     </section>
 
   </div>
