@@ -1,4 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:useBean scope="session" id="studyGroupManager" class="study.StudyManager" />
+
+<% 
+  study.User user = (study.User)session.getAttribute("user");
+  if (user == null) {
+    response.sendRedirect("signin.jsp");
+  }
+  
+  if(request.getMethod().equals("POST")) {
+    boolean success = studyGroupManager.createStudyGroup(
+    user.getUser_id(),
+      request.getParameter("sg_name"),
+      request.getParameter("sg_description"),
+      request.getParameter("sg_max_size")
+    );
+
+    if (success) {
+      out.println("<script>alert('스터디 생성에 성공했습니다.')</script>");
+      response.sendRedirect("study_management.jsp");
+    } else {
+      out.println("<script>alert('스터디 생성에 실패했습니다.')</script>");
+    }
+  }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,47 +65,25 @@
   </style>
 </head>
 <body>
-  <header id="main_header">
-    <div id="title">
-      <h1>Let's Study</h1>
-      <h2>Create Study</h2>
-    </div>
-    <nav id="main_gnb">
-      <ul>
-        <li><a href="#">메인 화면</a></li>
-        <li><a href="#">검색 화면</a></li>
-      </ul>
-    </nav>
-    <nav id="main_lnb">
-      <ul>
-        <li><a href="#">로컬 기능 1</a></li>
-        <li><a href="#">로컬 기능 2</a></li>
-      </ul>
-    </nav>
-    <nav id="main_user">
-      <div>
-        <img src="user.png" width="30px" height="30px">
-        <div>ID</div>
-      </div>
-    </nav>
-  </header>
+   <%@ include file="header.jsp" %>
   <div id="content">
     <section id="main_section">
-      <form id="study_create_form">
+      <form id="study_create_form" method=post action="create_study.jsp">
         <h3>스터디 생성</h3>
-        <input type="text" name="name" placeholder="스터디 이름">
-        <textarea name="" id="" cols="30" rows="10">스터디 소개글</textarea>
-        <div id="study_search_radio">
+        <input type="text" name="sg_name" placeholder="스터디 이름">
+        <textarea name="sg_description" cols="30" rows="10" placeholder="스터디 소개글"></textarea>
+        <%-- <div id="study_search_radio">
           스터디 종류:
           <input id="study_type_choice1" type="radio" name="study_type" value="job">
           <label for="study_type_choice1">진로</label>
           <input id="study_type_choice2" type="radio" name="study_type" value="hobby">
           <label for="study_type_choice2">취미</label>
-        </div>
+        </div> --%>
+        <input type="number" name="sg_max_size" placeholder="최대 인원수" min="1" max="20">
         <button type="submit">스터디 생성</button>
       </form>
     </section>
-    <aside id="main_aside">aside</aside>
+
   </div>
   <footer id="main_footer">
     <h3>Let's study</h3>

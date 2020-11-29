@@ -3,9 +3,10 @@
 
 <%
   if(request.getMethod().equals("POST")) {
-    if(true) {
+    if(request.getParameter("password").equals(request.getParameter("password2"))) {
       boolean success = passport.signUp(
           request.getParameter("email"),
+          request.getParameter("nickname"),
           request.getParameter("password"),
           request.getParameter("phone_number"), 
           request.getParameter("description")
@@ -74,34 +75,14 @@
   </style>
 </head>
 <body>
-  <header id="main_header">
-    <div id="title">
-      <h1>Let's Study</h1>
-      <h2>Sing Up</h2>
-    </div>
-    <nav id="main_gnb">
-      <ul>
-        <li><a href="#">메인 화면</a></li>
-        <li><a href="#">검색 화면</a></li>
-      </ul>
-    </nav>
-    <nav id="main_lnb">
-      <ul>
-        <li><a href="#">로컬 기능 1</a></li>
-        <li><a href="#">로컬 기능 2</a></li>
-      </ul>
-    </nav>
-  </header>
   <div id="content">
-
     <section id="main_section">
       <form id="signin_form" method=post action="signup.jsp">
         <div>
-
-        </div>
-        <div>
           <label for="email">E-Mail</label>
           <input type="email" name="email">
+          <label for="nickname">Nickname</label>
+          <input type="text" name="nickname">
           <label for="password">Password</label>
           <input type="password" name="password">
           <label for="password2">Repeat Password</label>

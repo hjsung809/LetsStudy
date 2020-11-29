@@ -8,7 +8,7 @@
 
       if (user != null) {
         session.setAttribute("user", user);
-        pageContext.forward("main.jsp");
+        response.sendRedirect("main.jsp");
       } else {
         out.println("<script>alert('로그인에 실패하였습니다.')</script>");
       }
@@ -64,24 +64,6 @@
   </style>
 </head>
 <body>
-  <header id="main_header">
-    <div id="title">
-      <h1>Let's Study</h1>
-      <h2>Sing In</h2>
-    </div>
-    <nav id="main_gnb">
-      <ul>
-        <li><a href="#">메인 화면</a></li>
-        <li><a href="#">검색 화면</a></li>
-      </ul>
-    </nav>
-    <nav id="main_lnb">
-      <ul>
-        <li><a href="#">로컬 기능 1</a></li>
-        <li><a href="#">로컬 기능 2</a></li>
-      </ul>
-    </nav>
-  </header>
   <div id="content">
 
     <section id="main_section">
