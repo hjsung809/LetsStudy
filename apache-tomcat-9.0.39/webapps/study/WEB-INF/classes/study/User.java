@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class User {
   int user_id;
   String usr_email;
+  String usr_nickname;
   // String usr_password;
   String usr_phone_number;
   String usr_description;
@@ -22,6 +23,13 @@ public class User {
   }
   public void setUsr_email(String usr_email) {
     this.usr_email = usr_email;
+  }
+
+  public String getUsr_nickname() {
+    return usr_nickname;
+  }
+  public void setUsr_nickname(String usr_nickname) {
+    this.usr_nickname = usr_nickname;
   }
 
   // public String getUsr_password() {

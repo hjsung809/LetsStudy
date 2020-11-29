@@ -3,11 +3,13 @@ drop tables user_meeting, user_recruitment, user_study_group, meetings, recruitm
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     usr_email VARCHAR(255) NOT NULL,
+    usr_nickname VARCHAR(255) NOT NULL,
     usr_password VARCHAR(255) NOT NULL,
     usr_phone_number VARCHAR(255) NOT NULL,
     usr_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (usr_email)
+    UNIQUE (usr_email),
+    UNIQUE (usr_nickname)
 )  ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS study_groups (
@@ -16,7 +18,7 @@ CREATE TABLE IF NOT EXISTS study_groups (
     sg_name VARCHAR(255) NOT NULL,
     sg_description TEXT,
     sg_max_size INT NOT NULL,
-    sg_meeting_count INT,
+    sg_meeting_count INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES users (user_id) ON UPDATE RESTRICT ON DELETE CASCADE
 )  ENGINE=INNODB;

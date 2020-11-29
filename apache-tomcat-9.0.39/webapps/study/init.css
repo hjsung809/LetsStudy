@@ -36,31 +36,40 @@ html, body {
 
 #main_user {
   position: absolute;
-  top: 55px;
+  top: 40px;
   right: 30px;
-  margin: 0 auto;
 }
 
-#main_user > div {
-  width: 100px;
-  height: 50px;   
+#main_user > a {
+  margin: 0 auto;
+  height: 50px;
+  padding: 3px;
+  display: block; 
+  padding: 5px 10px;
   border: 1px solid black;
-  background-color: bisque;
+}
+
+#main_user > a:hover{ 
+  background-color: rgb(204, 203, 203);
+  color: white;
+}
+
+#main_user > a > img {
+  width: 50px;
+  height: 50px;
+  border: 0;
+  line-height: 50px;
+}
+
+#main_user > a > div {
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  float: right;
   overflow: hidden;
 }
 
-#main_user > div > img {
-  float: left;
-  padding: 10px;
-}
-
-#main_user > div > div {
-  float: right;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-}
 
 #main_gnb > ul { overflow: hidden;}
 #main_gnb > ul > li { float:  left; }
@@ -97,7 +106,7 @@ html, body {
 }
 
 #content > #main_section {
-  width: 750px;
+  width: 960px;
   float: left;
   height: 100%;
   background-color: antiquewhite;
