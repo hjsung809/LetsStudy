@@ -14,7 +14,8 @@
 
       if (success) {
         out.println("<script>alert('회원가입에 성공했습니다.')</script>");
-        response.sendRedirect("signin.jsp");
+        out.println("<script>alert('로그인 정보가 유효하지 않습니다.')</script>");
+response.sendRedirect("signin.jsp");
       } else {
         out.println("<script>alert('회원가입에 실패했습니다.')</script>");
       }

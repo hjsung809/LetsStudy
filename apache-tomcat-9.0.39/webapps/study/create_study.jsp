@@ -4,6 +4,7 @@
 <% 
   study.User user = (study.User)session.getAttribute("user");
   if (user == null) {
+    out.println("<script>alert('로그인 정보가 유효하지 않습니다.')</script>");
     response.sendRedirect("signin.jsp");
   }
   
@@ -17,7 +18,7 @@
 
     if (success) {
       out.println("<script>alert('스터디 생성에 성공했습니다.')</script>");
-      response.sendRedirect("study_management.jsp");
+      response.sendRedirect("my_study.jsp");
     } else {
       out.println("<script>alert('스터디 생성에 실패했습니다.')</script>");
     }

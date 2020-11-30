@@ -3,6 +3,7 @@
 <% 
   study.User user = (study.User)session.getAttribute("user");
   if (user == null) {
+    out.println("<script>alert('로그인 정보가 유효하지 않습니다.')</script>");
     response.sendRedirect("signin.jsp");
   }
 %>
@@ -35,11 +36,11 @@
       color: white;
     }
 
-    #study_management_div {
+    #my_study_div {
       float: right;
     }
 
-    #study_management_div > a{
+    #my_study_div > a{
       display: block;
       width: 460px;
       margin: 0 auto;
@@ -50,7 +51,7 @@
       background-color: white;
     }
 
-    #study_management_div > a:hover{
+    #my_study_div > a:hover{
       background-color: black;
       color: white;
     }
@@ -66,8 +67,8 @@
         스터디 검색
         </a>
       </div>
-      <div id="study_management_div">
-        <a href="study_management.jsp">
+      <div id="my_study_div">
+        <a href="my_study.jsp">
         스터디 관리
         </a>
       </div>
