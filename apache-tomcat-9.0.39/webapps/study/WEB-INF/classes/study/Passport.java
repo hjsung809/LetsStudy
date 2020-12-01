@@ -11,7 +11,7 @@ public class Passport {
   
   	/* MySQL 연결정보 */
 	String jdbc_driver = "com.mysql.cj.jdbc.Driver";
-	String jdbc_url = "jdbc:mysql://192.168.219.125:3306/study?serverTimezone=UTC"; 
+	String jdbc_url = "jdbc:mysql://122.35.194.46:3306/study?serverTimezone=UTC"; 
   
   	// DB연결 메서드
 	void connect() {

@@ -4,6 +4,7 @@
   study.User user = (study.User)session.getAttribute("user");
   if (user == null) {
     // session.setAttribute("user_id",5);
+    out.println("<script>alert('로그인 정보가 유효하지 않습니다.')</script>");
     response.sendRedirect("signin.jsp");
   } else {
     response.sendRedirect("main.jsp");

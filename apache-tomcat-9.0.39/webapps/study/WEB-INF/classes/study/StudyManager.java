@@ -12,7 +12,7 @@ public class StudyManager {
   
   	/* MySQL 연결정보 */
 	String jdbc_driver = "com.mysql.cj.jdbc.Driver";
-	String jdbc_url = "jdbc:mysql://192.168.219.125:3306/study?serverTimezone=UTC"; 
+	String jdbc_url = "jdbc:mysql://122.35.194.46:3306/study?serverTimezone=UTC"; 
   
     	// DB연결 메서드
 	void connect() {
@@ -68,15 +68,37 @@ public class StudyManager {
 
   public ArrayList<StudyGroup> getStudyGroupList(int user_id) {
     connect();
-    ArrayList<StudyGroup> studyGroups = new ArrayList<>();
+		ArrayList<StudyGroup> studyGroups = new ArrayList<>();
+		// 본인이 오너인 그룹
     String sql = "SELECT study_groups.study_group_id, usr_nickname, sg_name, sg_description, sg_max_size, sg_meeting_count, study_groups.created_at FROM study_groups, users  WHERE study_groups.owner_id = ? && users.user_id = study_groups.owner_id";
+		// 본인이 속한 그룹
+		String sql2 = "SELECT study_groups.study_group_id, usr_nickname, sg_name, sg_description, sg_max_size, sg_meeting_count, study_groups.created_at FROM user_study_group, study_groups, users  WHERE  user_study_group.user_id = ? && study_groups.study_group_id = user_study_group.study_group_id && users.user_id = study_groups.owner_id";
     
     
     try {
+			//첫번째 쿼리
       pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_id);
-			// pstmt.setInt(2, user_id);
       ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				StudyGroup studyGroup = new StudyGroup();
+				
+				studyGroup.setStudy_group_id(rs.getInt("study_group_id"));
+				studyGroup.setOwner_nickname(rs.getString("usr_nickname"));
+				studyGroup.setSg_name(rs.getString("sg_name"));
+				studyGroup.setSg_description(rs.getString("sg_description"));
+				studyGroup.setSg_max_size(rs.getInt("sg_max_size"));
+				studyGroup.setSg_meeting_count(rs.getInt("sg_meeting_count"));
+				studyGroup.setCreated_at(rs.getTimestamp("created_at"));
+				studyGroups.add(studyGroup);
+			}
+			rs.close();
+
+			// 두번째 쿼리
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, user_id);
+      rs = pstmt.executeQuery();
 
 			while(rs.next()) {
 				StudyGroup studyGroup = new StudyGroup();
